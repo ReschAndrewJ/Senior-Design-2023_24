@@ -3,7 +3,7 @@
 
 ### Team Name - AjR
 
-Andrew Resch - reschaj@mail.uc.edu
+Andrew Resch (Computer Science) - reschaj@mail.uc.edu
 
 ### Project Topic Area
 
