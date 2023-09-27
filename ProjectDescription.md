@@ -5,6 +5,10 @@
 
 Andrew Resch (Computer Science) - reschaj@mail.uc.edu
 
+#### Advisor
+
+Fred Annexstein - fred.annexstein@uc.edu
+
 ### Project Topic Area
 
 An Android application that is a Japanese dictionary where the user provides the words that they want to store
