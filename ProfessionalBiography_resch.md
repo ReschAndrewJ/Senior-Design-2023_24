@@ -20,7 +20,7 @@ Professional Practice EEP, University of Cincinnati. (Summer. 2022)
 - Graphics: Some knowledge of shaders
 - Machine Learning: Neural networks, Ensemble models
 
-### Project Sought
+### Project Sought / Ideas
 - A project using LLVM to create a programming language
 - A project that uses the new Godot 4 engine
 - A dictionary app for Android where the user inputs the words that they want the dictionary to store, with font support for writing systems from other languages
