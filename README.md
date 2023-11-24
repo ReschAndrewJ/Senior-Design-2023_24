@@ -31,11 +31,11 @@
     - Effort Matrix
         - Since the project is solo, there is no effort matrix
       
-5) ### [Project Constraints Essay](homework_essays/ProjectConstraints.docx)
+5) ### [Project Constraints Essay](homework_essays/ProjectConstraints.pdf)
 
-6) ### [PPT Slideshow]()
+6) ### [PPT Slideshow](FallSlideDeck.pptx)
 
-7) ### [Self-Assessment Essay](homework_essays/IndividualCapstoneAssessment_resch.docx)
+7) ### [Self-Assessment Essay](homework_essays/IndividualCapstoneAssessment_resch.pdf)
 
 8) ### [Professional Biography](ProfessionalBiography_resch.md)
 
