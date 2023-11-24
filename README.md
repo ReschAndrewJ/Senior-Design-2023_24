@@ -22,7 +22,9 @@
         - [Level 1](Design_Diagrams/DesignD1.png)
         - [Level 2](Design_Diagrams/DesignD2.png)
     - Design Diagram Descriptions
-
+        - Level 0: Diagram D0 describes the core function of the application as a dictionary. Arrows going left-to-right signify actions by the user, and a smaller arrow underneath going right-to-left signifies a response from the application.
+        - Level 1: Diagram D1 describes the transitions between pages of the application and what functionalities each page is planned to have. Each outer box contains a page name and an inner box which lists that page's functionalities. Arrows between pages are labeled with the action that triggers a transition from the first page to the next.
+        - Level 2: Diagram D2 describes the layouts of each page with descriptions of each element's function. It also shows the planned structure of the SQLite database to be used by the application.
      
 4) ### Project Tasks and Timeline
 
