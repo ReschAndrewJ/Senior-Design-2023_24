@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
+
+[node name="GroupWordListPage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="GroupName_Container" type="MarginContainer" parent="."]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.6
+anchor_bottom = 0.1
+margin_right = 1.0
+
+[node name="GroupName_Label" type="Label" parent="GroupName_Container"]
+margin_top = 9.0
+margin_right = 397.0
+margin_bottom = 55.0
+text = "Placeholder GroupName"
+
+[node name="EditGroup_Container" type="MarginContainer" parent="."]
+anchor_left = 0.65
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.1
+
+[node name="EditGroup_Button" type="Button" parent="EditGroup_Container"]
+margin_right = 181.0
+margin_bottom = 64.0
+text = "Edit Group"
+
+[node name="WordsList_Scroll" type="ScrollContainer" parent="."]
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.95
+margin_right = 12.0
+margin_bottom = 12.0
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WordsList_Scroll"]
+margin_right = 660.0
+margin_bottom = 1036.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="Word0_Container" type="MarginContainer" parent="WordsList_Scroll/VBoxContainer"]
+margin_right = 660.0
+margin_bottom = 52.0
+
+[node name="Button" type="Button" parent="WordsList_Scroll/VBoxContainer/Word0_Container"]
+margin_right = 660.0
+margin_bottom = 52.0
+text = "Placeholder Word1"
+
+[node name="Word1_Container" type="MarginContainer" parent="WordsList_Scroll/VBoxContainer"]
+margin_top = 72.0
+margin_right = 660.0
+margin_bottom = 124.0
+
+[node name="Button" type="Button" parent="WordsList_Scroll/VBoxContainer/Word1_Container"]
+margin_right = 660.0
+margin_bottom = 52.0
+text = "Placeholder Word2"

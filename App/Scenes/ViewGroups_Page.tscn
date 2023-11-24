@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/ViewGroups_Page.cs" type="Script" id=2]
+
+[node name="ViewGroupsPage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AddGroup_Container" type="MarginContainer" parent="."]
+anchor_left = 0.65
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.1
+
+[node name="AddGroup_Button" type="Button" parent="AddGroup_Container"]
+margin_right = 180.0
+margin_bottom = 64.0
+text = "Add Group"
+
+[node name="GroupsList_Scroll" type="ScrollContainer" parent="."]
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.95
+margin_right = 12.0
+margin_bottom = 12.0
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GroupsList_Scroll"]
+margin_right = 660.0
+margin_bottom = 1036.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="Group0_Container" type="MarginContainer" parent="GroupsList_Scroll/VBoxContainer"]
+margin_right = 660.0
+margin_bottom = 52.0
+
+[node name="Button" type="Button" parent="GroupsList_Scroll/VBoxContainer/Group0_Container"]
+margin_right = 660.0
+margin_bottom = 52.0
+text = "Placeholder Group1"
+
+[node name="Group1_Container" type="MarginContainer" parent="GroupsList_Scroll/VBoxContainer"]
+margin_top = 72.0
+margin_right = 660.0
+margin_bottom = 124.0
+
+[node name="Button" type="Button" parent="GroupsList_Scroll/VBoxContainer/Group1_Container"]
+margin_right = 660.0
+margin_bottom = 52.0
+text = "Placeholder Group2"
+
+[connection signal="button_down" from="AddGroup_Container/AddGroup_Button" to="." method="_on_AddGroup_Button_button_down"]
