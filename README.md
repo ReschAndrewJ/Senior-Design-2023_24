@@ -46,6 +46,9 @@
     This project has had no expenses.
 
 10) ### Appendix
-
       - [Application Code](App)
       - [Godot SQLite Addon](https://github.com/2shady4u/godot-sqlite)
+
+    As evidence of 45 hours of effort, see [Timeline](Milestones_Timeline.pdf) presenting 8 weeks of development during the fall semester.
+
+    Substantial time was also spent on weekly assignments for the completion of the Fall Design Report.
