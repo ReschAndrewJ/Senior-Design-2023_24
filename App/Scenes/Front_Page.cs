@@ -11,6 +11,7 @@ public class Front_Page : Control
     
     readonly string WordCountLabel_text = "Words: {0}";
     readonly string DefCountLabel_text = "Definitions: {0}";
+    readonly string GroupCountLabel_text = "Groups: {0}";
     bool ready_complete = false;
     
     public override void _Ready()
@@ -25,6 +26,8 @@ public class Front_Page : Control
         WordCountLabelRef.Text = string.Format(WordCountLabel_text, savedWordCount);
         int savedDefCount = (int)Database_Ref.Call("get_definitioncount");
         DefCountLabelRef.Text = string.Format(DefCountLabel_text, savedDefCount);
+        int savedGroupCount = (int)Database_Ref.Call("get_groupcount");
+        GroupCountLabelRef.Text = string.Format(GroupCountLabel_text, savedGroupCount);
         ready_complete = true;
     }
 
@@ -38,6 +41,8 @@ public class Front_Page : Control
             WordCountLabelRef.Text = string.Format(WordCountLabel_text, savedWordCount);
             int savedDefCount = (int)Database_Ref.Call("get_definitioncount");
             DefCountLabelRef.Text = string.Format(DefCountLabel_text, savedDefCount);
+            int savedGroupCount = (int)Database_Ref.Call("get_groupcount");
+            GroupCountLabelRef.Text = string.Format(GroupCountLabel_text, savedGroupCount);
         }
     }
 

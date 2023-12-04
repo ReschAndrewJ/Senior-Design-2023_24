@@ -80,3 +80,6 @@ margin_bottom = 52.0
 margin_right = 116.0
 margin_bottom = 52.0
 text = "Cancel"
+
+[connection signal="button_down" from="VBoxContainer/MarginContainer/HBoxContainer/Save_Container/Save_Button" to="." method="_on_Save_Button_button_down"]
+[connection signal="button_down" from="VBoxContainer/MarginContainer/HBoxContainer/Cancel_Container/Cancel_Button" to="." method="_on_Cancel_Button_button_down"]
