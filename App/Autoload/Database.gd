@@ -14,6 +14,15 @@ const TABLE_DEFINITIONS_COLUMN_PRIMARY_KEY: String = "DEFINITIONS_COL_PKEY"
 const TABLE_DEFINITIONS_COLUMN_WORD_KEY: String = "DEFINITIONS_COL_WORDKEY"
 const TABLE_DEFINITIONS_COLUMN_TEXT: String = "DEFINITIONS_COL_TEXT"
 
+const TABLE_GROUPS_NAME: String = "GROUPS_NAME"
+const TABLE_GROUPS_COLUMN_PRIMARY_KEY: String = "GROUPS_COL_PKEY"
+const TABLE_GROUPS_COLUMN_GROUP_NAME: String = "GROUPS_COL_GROUPNAME"
+
+const TABLE_GROUPWORDPAIRS_NAME: String = "GWPAIRS_NAME"
+const TABLE_GROUPWORDPAIRS_COLUMN_PRIMARY_KEY: String = "GWPAIRS_COL_PKEY"
+const TABLE_GROUPWORDPAIRS_COLUMN_WORD_KEY: String = "GWPAIRS_COL_WORDKEY"
+const TABLE_GROUPWORDPAIRS_COLUMN_GROUP_KEY: String = "GWPAIRS_COL_GROUPKEY"
+
 
 func _ready():
 	database.path = database_filename
@@ -22,12 +31,13 @@ func _ready():
 		# database failed to open
 		pass
 
+
+	# Words Table
 	if not database.query(
 		"SELECT COUNT(name) FROM sqlite_master where type='table' and name='%s';" % TABLE_WORDS_NAME
 		):
 		# database failed to check if table exists
 		pass
-	
 	if not database.query_result_by_reference[0].values()[0]:
 		database.create_table(
 			TABLE_WORDS_NAME,
@@ -38,12 +48,13 @@ func _ready():
 			}
 		)
 	
+	
+	# Definitions Table
 	if not database.query(
 		"SELECT COUNT(name) FROM sqlite_master where type='table' and name='%s';" % TABLE_DEFINITIONS_NAME
 		):
 		# database failed to check if table exists
 		pass
-		
 	if not database.query_result_by_reference[0].values()[0]:
 		database.create_table(
 			TABLE_DEFINITIONS_NAME,
@@ -51,6 +62,39 @@ func _ready():
 			TABLE_DEFINITIONS_COLUMN_PRIMARY_KEY : {"data_type":"int","primary_key":true,"auto_increment":true},
 			TABLE_DEFINITIONS_COLUMN_WORD_KEY : {"data_type":"int","foreign_key":"%s.%s" % [TABLE_WORDS_NAME, TABLE_WORDS_COLUMN_PRIMARY_KEY]},
 			TABLE_DEFINITIONS_COLUMN_TEXT : {"data_type":"text"}
+			}
+		)
+
+	
+	# Groups Table
+	if not database.query(
+		"SELECT COUNT(name) FROM sqlite_master where type='table' and name='%s';" % TABLE_GROUPS_NAME
+		):
+		# database failed to check if table exists
+		pass
+	if not database.query_result_by_reference[0].values()[0]:
+		database.create_table(
+			TABLE_GROUPS_NAME,
+			{
+			TABLE_GROUPS_COLUMN_PRIMARY_KEY : {"data_type":"int","primary_key":true,"auto_increment":true},
+			TABLE_GROUPS_COLUMN_GROUP_NAME : {"data_type":"text"}
+			}
+		)	
+
+
+	# Group-Word Pairs Table
+	if not database.query(
+		"SELECT COUNT(name) FROM sqlite_master where type='table' and name='%s';" % TABLE_GROUPWORDPAIRS_NAME
+		):
+		# database failed to check if table exists
+		pass
+	if not database.query_result_by_reference[0].values()[0]:
+		database.create_table(
+			TABLE_GROUPWORDPAIRS_NAME,
+			{
+			TABLE_GROUPWORDPAIRS_COLUMN_PRIMARY_KEY : {"data_type":"int","primary_key":true,"auto_increment":true},
+			TABLE_GROUPWORDPAIRS_COLUMN_WORD_KEY : {"data_type":"int","foreign_key":"%s.%s" % [TABLE_WORDS_NAME, TABLE_WORDS_COLUMN_PRIMARY_KEY]},
+			TABLE_GROUPWORDPAIRS_COLUMN_GROUP_KEY : {"data_type":"int","foreign_key":"%s.%s" % [TABLE_GROUPS_NAME, TABLE_GROUPS_COLUMN_PRIMARY_KEY]}
 			}
 		)
 
@@ -106,6 +150,65 @@ func insert_definition(word_key: int, text: String)->int:
 #func delete_definition
 
 
+func insert_group(gname: String)->int:
+	if not database.insert_row(
+		TABLE_GROUPS_NAME,
+		{
+		TABLE_GROUPS_COLUMN_GROUP_NAME : gname
+		}
+	):
+		# failed to insert group
+		return -1
+	return database.last_insert_rowid
+
+
+#func update_group
+#func delete_group 
+
+
+func get_groups(sortByName: bool = false)->Array:
+	if not database.query(
+		"SELECT %s, %s FROM %s ORDER BY %s;" % [
+			TABLE_GROUPS_COLUMN_PRIMARY_KEY, TABLE_GROUPS_COLUMN_GROUP_NAME,
+			TABLE_GROUPS_NAME, 
+			(TABLE_GROUPS_COLUMN_GROUP_NAME if sortByName else TABLE_GROUPS_COLUMN_PRIMARY_KEY)
+		]
+	):
+		# failed to query groups
+		pass
+	
+	var groupCount = database.query_result.size()
+	var pKeyArray = []
+	pKeyArray.resize(groupCount)
+	var gNameArray = []
+	gNameArray.resize(groupCount)
+	var result = [pKeyArray, gNameArray]
+	var i: int = 0
+	for gDict in database.query_result:
+		var pKey = (gDict as Dictionary)[TABLE_GROUPS_COLUMN_PRIMARY_KEY]
+		var gName = (gDict as Dictionary)[TABLE_GROUPS_COLUMN_GROUP_NAME]
+
+		result[0][i] = pKey
+		result[1][i] = gName
+		i += 1
+	return result 
+
+
+func insert_groupWordPair(word_key: int, group_key: int):
+	if not database.insert_row(
+		TABLE_GROUPWORDPAIRS_NAME,
+		{
+		TABLE_GROUPWORDPAIRS_COLUMN_WORD_KEY : word_key,
+		TABLE_GROUPWORDPAIRS_COLUMN_GROUP_KEY : group_key
+		}
+	):
+		# failed to insert pair
+		return -1
+	return database.last_insert_rowid
+
+
+#func delete_groupWordPair
+
 
 func get_wordcount():
 	if not database.query("SELECT COUNT(%s) FROM %s" % [TABLE_WORDS_COLUMN_PRIMARY_KEY, TABLE_WORDS_NAME]):
@@ -119,4 +222,12 @@ func get_definitioncount():
 		# failed to query definition count
 		pass
 	return database.query_result_by_reference[0].values()[0]
+
+
+func get_groupcount():
+	if not database.query("SELECT COUNT(%s) FROM %s" % [TABLE_GROUPS_COLUMN_PRIMARY_KEY, TABLE_GROUPS_NAME]):
+		# failed to query group count
+		pass
+	return database.query_result_by_reference[0].values()[0]
+
 
