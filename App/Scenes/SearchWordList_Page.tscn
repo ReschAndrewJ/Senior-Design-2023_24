@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/SearchWordList_Page.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/ScrollBox_Segment.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=4]
 
 [node name="SearchWordListPage" type="Control"]
 anchor_right = 1.0
@@ -39,37 +41,16 @@ size_flags_horizontal = 8
 margin_right = 118.0
 margin_bottom = 52.0
 text = "Search"
+script = ExtResource( 4 )
 
-[node name="WordsList_Scroll" type="ScrollContainer" parent="."]
-anchor_left = 0.1
-anchor_top = 0.3
-anchor_right = 0.9
-anchor_bottom = 0.9
-follow_focus = true
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WordsList_Scroll"]
+[node name="WordsList_Container" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 148.0
 margin_right = 576.0
-margin_bottom = 768.0
-size_flags_horizontal = 3
+margin_bottom = 1088.0
 size_flags_vertical = 3
-custom_constants/separation = 20
 
-[node name="Word0_Container" type="MarginContainer" parent="WordsList_Scroll/VBoxContainer"]
+[node name="WordPreviews_Scroll" parent="VBoxContainer/WordsList_Container" instance=ExtResource( 3 )]
 margin_right = 576.0
-margin_bottom = 52.0
+margin_bottom = 940.0
 
-[node name="Button" type="Button" parent="WordsList_Scroll/VBoxContainer/Word0_Container"]
-margin_right = 576.0
-margin_bottom = 52.0
-text = "Placeholder Word1"
-
-[node name="Word1_Container" type="MarginContainer" parent="WordsList_Scroll/VBoxContainer"]
-margin_top = 72.0
-margin_right = 576.0
-margin_bottom = 124.0
-
-[node name="Button" type="Button" parent="WordsList_Scroll/VBoxContainer/Word1_Container"]
-margin_right = 576.0
-margin_bottom = 52.0
-text = "Placeholder Word2"
+[connection signal="Tapped" from="VBoxContainer/ConfirmSearch_Container/ConfirmSearch_Button" to="." method="_on_ConfirmSearch_Button_Tapped"]

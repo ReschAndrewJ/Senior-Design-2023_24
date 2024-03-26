@@ -12,7 +12,6 @@ public class Front_Page : Control
     readonly string WordCountLabel_text = "Words: {0}";
     readonly string DefCountLabel_text = "Definitions: {0}";
     readonly string GroupCountLabel_text = "Groups: {0}";
-    bool ready_complete = false;
     
     public override void _Ready()
     {
@@ -28,27 +27,12 @@ public class Front_Page : Control
         DefCountLabelRef.Text = string.Format(DefCountLabel_text, savedDefCount);
         int savedGroupCount = (int)Database_Ref.Call("get_groupcount");
         GroupCountLabelRef.Text = string.Format(GroupCountLabel_text, savedGroupCount);
-        ready_complete = true;
-    }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        
-        if (ready_complete) {
-            Node Database_Ref = GetNode("/root/Database");
-            int savedWordCount = (int)Database_Ref.Call("get_wordcount");
-            WordCountLabelRef.Text = string.Format(WordCountLabel_text, savedWordCount);
-            int savedDefCount = (int)Database_Ref.Call("get_definitioncount");
-            DefCountLabelRef.Text = string.Format(DefCountLabel_text, savedDefCount);
-            int savedGroupCount = (int)Database_Ref.Call("get_groupcount");
-            GroupCountLabelRef.Text = string.Format(GroupCountLabel_text, savedGroupCount);
-        }
+        RequestReady();
     }
 
 
-
-    public void _on_AddWord_Button_button_down()
+    public void _on_AddWord_Button_Tapped()
     {
         EditWord_Page EditWord_Page_Ref = GD.Load<PackedScene>("res://Scenes/EditWord_Page.tscn").Instance<EditWord_Page>();
         EditWord_Page_Ref.Previous_Page_Ref = this;
@@ -58,7 +42,7 @@ public class Front_Page : Control
     }
 
 
-    public void _on_ViewGroups_Button_button_down()
+    public void _on_ViewGroups_Button_Tapped()
     {
         ViewGroups_Page ViewGroups_Page_Ref = GD.Load<PackedScene>("res://Scenes/ViewGroups_Page.tscn").Instance<ViewGroups_Page>();
         ViewGroups_Page_Ref.Previous_Page_Ref = this;
@@ -68,7 +52,7 @@ public class Front_Page : Control
     }
 
 
-    public void _on_ConfirmSearch_Button_button_down()
+    public void _on_ConfirmSearch_Button_Tapped()
     {
 
         string searchValue = searchBarRef.Text;

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/EditDefinition_Segment.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=3]
 
-[node name="EditDefinition_Segment" type="HBoxContainer"]
+[node name="EditDefinition" type="HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 500, 0 )
@@ -14,6 +15,7 @@ script = ExtResource( 2 )
 [node name="Definition_Container" type="MarginContainer" parent="."]
 margin_right = 335.0
 margin_bottom = 100.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
@@ -21,17 +23,21 @@ size_flags_stretch_ratio = 3.0
 margin_right = 335.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
+mouse_filter = 1
 
 [node name="RemoveDefinition_Container" type="MarginContainer" parent="."]
 margin_left = 385.0
 margin_right = 500.0
 margin_bottom = 100.0
+mouse_filter = 1
 size_flags_horizontal = 3
 
 [node name="RemoveDefinition_Button" type="Button" parent="RemoveDefinition_Container"]
 margin_right = 115.0
 margin_bottom = 100.0
+mouse_filter = 1
 text = "Delete"
+script = ExtResource( 3 )
 
 [connection signal="text_changed" from="Definition_Container/Definition_Input" to="." method="_on_Definition_Input_text_changed"]
-[connection signal="button_down" from="RemoveDefinition_Container/RemoveDefinition_Button" to="." method="_on_RemoveDefinition_Button_button_down"]
+[connection signal="Tapped" from="RemoveDefinition_Container/RemoveDefinition_Button" to="." method="_on_RemoveDefinition_Button_Tapped"]

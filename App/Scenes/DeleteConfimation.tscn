@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/DeleteConfimation.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=3]
+
+[node name="DeleteConfimation" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.941176 )
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.4
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 569.0
+margin_bottom = 249.0
+custom_constants/separation = 40
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 562.0
+margin_bottom = 98.0
+text = "Really Delete?"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 562.0
+margin_bottom = 190.0
+size_flags_vertical = 0
+custom_constants/separation = 100
+alignment = 1
+
+[node name="Confirm_Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 103.0
+margin_right = 242.0
+margin_bottom = 52.0
+text = "Confirm"
+script = ExtResource( 3 )
+
+[node name="Cancel_Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 342.0
+margin_right = 458.0
+margin_bottom = 52.0
+text = "Cancel"
+script = ExtResource( 3 )
+
+[connection signal="Tapped" from="PanelContainer/VBoxContainer/HBoxContainer/Confirm_Button" to="." method="_on_Confirm_Button_Tapped"]
+[connection signal="Tapped" from="PanelContainer/VBoxContainer/HBoxContainer/Cancel_Button" to="." method="_on_Cancel_Button_Tapped"]

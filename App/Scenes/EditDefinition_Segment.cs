@@ -1,20 +1,32 @@
 using Godot;
-using System;
 
 public class EditDefinition_Segment : HBoxContainer
 {
 
-public string Definition {get; private set;}
 
-public void _on_RemoveDefinition_Button_button_down() 
+private string definition = "";
+public string Definition { 
+    get { return definition; }
+    set {
+        definition = value;
+        GetNode<TextEdit>("Definition_Container/Definition_Input").Text = value;
+    }
+}
+
+public void _on_RemoveDefinition_Button_Tapped() 
 {
-    GetParent().CallDeferred("remove_child", this);
-    QueueFree();
+    Node parent = GetParent();
+    if (parent is ScrollBox_Segment scrollbox) {
+        scrollbox.removeNode(this);
+    } else {
+        GetParent().CallDeferred("remove_child", this);
+        QueueFree();
+    }
 }
 
 public void _on_Definition_Input_text_changed()
 {
-    Definition = GetNode<TextEdit>("Definition_Container/Definition_Input").Text;
+    definition = GetNode<TextEdit>("Definition_Container/Definition_Input").Text;
 }
 
 

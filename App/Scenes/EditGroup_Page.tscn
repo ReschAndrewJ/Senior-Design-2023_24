@@ -1,85 +1,108 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/EditGroup_Page.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=3]
 
 [node name="EditGroupPage" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( -726, 162 )
+rect_pivot_offset = Vector2( -26, 126 )
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.03
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.588235 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.941176 )
+anchor_left = 0.05
 anchor_top = 0.2
-anchor_right = 0.97
-anchor_bottom = 0.8
+anchor_right = 0.95
+anchor_bottom = 0.45
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 641.0
+margin_bottom = 313.0
 custom_constants/separation = 60
 
-[node name="DeleteGroup_Container" type="MarginContainer" parent="VBoxContainer"]
-margin_left = 457.0
-margin_right = 676.0
-margin_bottom = 52.0
+[node name="DeleteGroup_Container" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+margin_left = 395.0
+margin_right = 634.0
+margin_bottom = 57.0
 size_flags_horizontal = 8
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
 
-[node name="DeleteGroup_Button" type="Button" parent="VBoxContainer/DeleteGroup_Container"]
+[node name="DeleteGroup_Button" type="Button" parent="PanelContainer/VBoxContainer/DeleteGroup_Container"]
+margin_top = 5.0
 margin_right = 219.0
-margin_bottom = 52.0
+margin_bottom = 57.0
 text = "Delete Group"
+script = ExtResource( 3 )
 
-[node name="GroupName_Container" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 112.0
-margin_right = 676.0
-margin_bottom = 168.0
+[node name="GroupName_Container" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 117.0
+margin_right = 634.0
+margin_bottom = 173.0
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/GroupName_Container"]
-margin_right = 676.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GroupName_Container"]
+margin_left = 10.0
+margin_right = 624.0
 margin_bottom = 56.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/GroupName_Container/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GroupName_Container/HBoxContainer"]
 margin_top = 5.0
 margin_right = 202.0
 margin_bottom = 51.0
 text = "Group Name:"
 
-[node name="GroupName_Input" type="LineEdit" parent="VBoxContainer/GroupName_Container/HBoxContainer"]
+[node name="GroupName_Input" type="LineEdit" parent="PanelContainer/VBoxContainer/GroupName_Container/HBoxContainer"]
 margin_left = 222.0
-margin_right = 676.0
+margin_right = 614.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 228.0
-margin_right = 676.0
-margin_bottom = 280.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 233.0
+margin_right = 634.0
+margin_bottom = 285.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
-margin_right = 676.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+margin_right = 634.0
 margin_bottom = 52.0
 custom_constants/separation = 60
 alignment = 1
 
-[node name="Save_Container" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 207.0
-margin_right = 292.0
+[node name="Save_Container" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 186.0
+margin_right = 271.0
 margin_bottom = 52.0
 
-[node name="Save_Button" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Save_Container"]
+[node name="Save_Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Save_Container"]
 margin_right = 85.0
 margin_bottom = 52.0
 text = "Save"
+script = ExtResource( 3 )
 
-[node name="Cancel_Container" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 352.0
-margin_right = 468.0
+[node name="Cancel_Container" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 331.0
+margin_right = 447.0
 margin_bottom = 52.0
 
-[node name="Cancel_Button" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/Cancel_Container"]
+[node name="Cancel_Button" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Cancel_Container"]
 margin_right = 116.0
 margin_bottom = 52.0
 text = "Cancel"
+script = ExtResource( 3 )
 
-[connection signal="button_down" from="VBoxContainer/MarginContainer/HBoxContainer/Save_Container/Save_Button" to="." method="_on_Save_Button_button_down"]
-[connection signal="button_down" from="VBoxContainer/MarginContainer/HBoxContainer/Cancel_Container/Cancel_Button" to="." method="_on_Cancel_Button_button_down"]
+[connection signal="Tapped" from="PanelContainer/VBoxContainer/DeleteGroup_Container/DeleteGroup_Button" to="." method="_on_DeleteGroup_Button_Tapped"]
+[connection signal="Tapped" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Save_Container/Save_Button" to="." method="_on_Save_Button_Tapped"]
+[connection signal="Tapped" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Cancel_Container/Cancel_Button" to="." method="_on_Cancel_Button_Tapped"]

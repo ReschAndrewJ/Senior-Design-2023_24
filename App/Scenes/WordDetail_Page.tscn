@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/WordDetail_Page.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/ScrollBox_Segment.tscn" type="PackedScene" id=4]
 
 [node name="WordDetailPage" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.1
@@ -23,6 +27,7 @@ size_flags_horizontal = 8
 margin_right = 170.0
 margin_bottom = 52.0
 text = "Edit Word"
+script = ExtResource( 3 )
 
 [node name="KanjiForm_Container" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 56.0
@@ -34,12 +39,12 @@ margin_right = 576.0
 margin_bottom = 46.0
 text = "Placeholder 漢字"
 
-[node name="KanaForm_Container2" type="MarginContainer" parent="VBoxContainer"]
+[node name="KanaForm_Container" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 106.0
 margin_right = 576.0
 margin_bottom = 152.0
 
-[node name="Label" type="Label" parent="VBoxContainer/KanaForm_Container2"]
+[node name="Label" type="Label" parent="VBoxContainer/KanaForm_Container"]
 margin_right = 576.0
 margin_bottom = 46.0
 text = "Placeholder かな"
@@ -48,68 +53,46 @@ text = "Placeholder かな"
 margin_top = 156.0
 margin_right = 576.0
 margin_bottom = 588.0
+rect_min_size = Vector2( 0, 300 )
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Definitions_Container"]
+[node name="Definitions_VBox" type="VBoxContainer" parent="VBoxContainer/Definitions_Container"]
 margin_right = 576.0
 margin_bottom = 432.0
-
-[node name="Label" type="Label" parent="VBoxContainer/Definitions_Container/VBoxContainer"]
-margin_right = 576.0
-margin_bottom = 46.0
-text = "Definitions"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Definitions_Container/VBoxContainer"]
-margin_top = 50.0
-margin_right = 576.0
-margin_bottom = 432.0
-size_flags_vertical = 3
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Definitions_Container/VBoxContainer/ScrollContainer"]
-margin_right = 576.0
-margin_bottom = 96.0
 size_flags_horizontal = 3
+custom_constants/separation = 10
 
-[node name="Label" type="Label" parent="VBoxContainer/Definitions_Container/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Definitions_Container/Definitions_VBox"]
 margin_right = 576.0
 margin_bottom = 46.0
-text = "Placeholder Definition 1"
+text = "Definitions:"
 
-[node name="Label2" type="Label" parent="VBoxContainer/Definitions_Container/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 50.0
+[node name="Definitions_Scroll" parent="VBoxContainer/Definitions_Container/Definitions_VBox" instance=ExtResource( 4 )]
+margin_top = 56.0
 margin_right = 576.0
-margin_bottom = 96.0
-text = "Placeholder Definition 2"
+margin_bottom = 432.0
 
 [node name="Groups_Container" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 592.0
 margin_right = 576.0
 margin_bottom = 1024.0
+rect_min_size = Vector2( 0, 100 )
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Groups_Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Groups_Container"]
 margin_right = 576.0
 margin_bottom = 432.0
+custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/Groups_Container/VBoxContainer"]
-margin_right = 576.0
+[node name="Label" type="Label" parent="VBoxContainer/Groups_Container/HBoxContainer"]
+margin_right = 123.0
 margin_bottom = 46.0
-text = "Groups"
+size_flags_vertical = 0
+text = "Groups:"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Groups_Container/VBoxContainer"]
-margin_top = 50.0
+[node name="Groups_ScrollBox" parent="VBoxContainer/Groups_Container/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 143.0
 margin_right = 576.0
 margin_bottom = 432.0
-size_flags_vertical = 3
-scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Groups_Container/VBoxContainer/ScrollContainer"]
-margin_right = 576.0
-margin_bottom = 52.0
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="VBoxContainer/Groups_Container/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 576.0
-margin_bottom = 52.0
-text = "Placeholder Group"
+[connection signal="Tapped" from="VBoxContainer/EditWord_Container/EditWord_Button" to="." method="_on_EditWord_Button_Tapped"]

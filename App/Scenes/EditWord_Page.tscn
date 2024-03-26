@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/EditWord_Page.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/GroupsSelectBox_Segment.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/ScrollBox_Segment.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=5]
 
 [node name="EditWordPage" type="Control"]
 anchor_right = 1.0
@@ -27,6 +29,7 @@ size_flags_horizontal = 8
 margin_right = 208.0
 margin_bottom = 52.0
 text = "Delete Word"
+script = ExtResource( 5 )
 
 [node name="KanjiForm_Container" type="MarginContainer" parent="EditWord_VBox"]
 margin_top = 72.0
@@ -50,23 +53,23 @@ margin_right = 676.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 
-[node name="KanaForm_Container2" type="MarginContainer" parent="EditWord_VBox"]
+[node name="KanaForm_Container" type="MarginContainer" parent="EditWord_VBox"]
 margin_top = 148.0
 margin_right = 676.0
 margin_bottom = 204.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EditWord_VBox/KanaForm_Container2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="EditWord_VBox/KanaForm_Container"]
 margin_right = 676.0
 margin_bottom = 56.0
 custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="EditWord_VBox/KanaForm_Container2/HBoxContainer"]
+[node name="Label" type="Label" parent="EditWord_VBox/KanaForm_Container/HBoxContainer"]
 margin_top = 5.0
 margin_right = 77.0
 margin_bottom = 51.0
 text = "カナ:"
 
-[node name="KanaForm_Input" type="LineEdit" parent="EditWord_VBox/KanaForm_Container2/HBoxContainer"]
+[node name="KanaForm_Input" type="LineEdit" parent="EditWord_VBox/KanaForm_Container/HBoxContainer"]
 margin_left = 97.0
 margin_right = 676.0
 margin_bottom = 56.0
@@ -75,64 +78,68 @@ size_flags_horizontal = 3
 [node name="Definitions_Container" type="MarginContainer" parent="EditWord_VBox"]
 margin_top = 224.0
 margin_right = 676.0
-margin_bottom = 524.0
+margin_bottom = 631.0
 rect_min_size = Vector2( 0, 300 )
+size_flags_vertical = 3
 
-[node name="Definitions_Scroll" type="ScrollContainer" parent="EditWord_VBox/Definitions_Container"]
+[node name="Definitions_VBox" type="VBoxContainer" parent="EditWord_VBox/Definitions_Container"]
 margin_right = 676.0
-margin_bottom = 300.0
-
-[node name="Definitions_VBox" type="VBoxContainer" parent="EditWord_VBox/Definitions_Container/Definitions_Scroll"]
-margin_right = 676.0
-margin_bottom = 46.0
+margin_bottom = 407.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
-[node name="Label" type="Label" parent="EditWord_VBox/Definitions_Container/Definitions_Scroll/Definitions_VBox"]
+[node name="Label" type="Label" parent="EditWord_VBox/Definitions_Container/Definitions_VBox"]
 margin_right = 676.0
 margin_bottom = 46.0
-text = "Definitions"
+text = "Definitions:"
+
+[node name="Definitions_Scroll" parent="EditWord_VBox/Definitions_Container/Definitions_VBox" instance=ExtResource( 4 )]
+margin_top = 56.0
+margin_right = 676.0
+margin_bottom = 407.0
 
 [node name="AddDefinition_Container" type="MarginContainer" parent="EditWord_VBox"]
 margin_left = 433.0
-margin_top = 544.0
+margin_top = 651.0
 margin_right = 676.0
-margin_bottom = 596.0
+margin_bottom = 703.0
 size_flags_horizontal = 8
 
 [node name="AddDefinition_Button" type="Button" parent="EditWord_VBox/AddDefinition_Container"]
 margin_right = 243.0
 margin_bottom = 52.0
 text = "Add Definition"
+script = ExtResource( 5 )
 
 [node name="GroupsSelect_Container" type="MarginContainer" parent="EditWord_VBox"]
-margin_top = 616.0
+margin_top = 723.0
 margin_right = 676.0
-margin_bottom = 716.0
+margin_bottom = 1131.0
 rect_min_size = Vector2( 0, 100 )
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditWord_VBox/GroupsSelect_Container"]
 margin_right = 676.0
-margin_bottom = 100.0
+margin_bottom = 408.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="EditWord_VBox/GroupsSelect_Container/HBoxContainer"]
-margin_top = 27.0
-margin_right = 110.0
-margin_bottom = 73.0
-text = "Groups"
+margin_right = 123.0
+margin_bottom = 46.0
+size_flags_vertical = 0
+text = "Groups:"
 
 [node name="GroupsSelectBox" parent="EditWord_VBox/GroupsSelect_Container/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 130.0
+margin_left = 143.0
 margin_right = 676.0
-margin_bottom = 100.0
+margin_bottom = 408.0
 
 [node name="MarginContainer" type="MarginContainer" parent="EditWord_VBox"]
-margin_top = 736.0
+margin_top = 1151.0
 margin_right = 676.0
-margin_bottom = 788.0
+margin_bottom = 1203.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditWord_VBox/MarginContainer"]
 margin_right = 676.0
@@ -149,6 +156,7 @@ margin_bottom = 52.0
 margin_right = 85.0
 margin_bottom = 52.0
 text = "Save"
+script = ExtResource( 5 )
 
 [node name="Cancel_Container" type="MarginContainer" parent="EditWord_VBox/MarginContainer/HBoxContainer"]
 margin_left = 352.0
@@ -159,7 +167,9 @@ margin_bottom = 52.0
 margin_right = 116.0
 margin_bottom = 52.0
 text = "Cancel"
+script = ExtResource( 5 )
 
-[connection signal="button_down" from="EditWord_VBox/AddDefinition_Container/AddDefinition_Button" to="." method="_on_AddDefinition_Button_button_down"]
-[connection signal="button_down" from="EditWord_VBox/MarginContainer/HBoxContainer/Save_Container/Save_Button" to="." method="_on_Save_Button_button_down"]
-[connection signal="button_down" from="EditWord_VBox/MarginContainer/HBoxContainer/Cancel_Container/Cancel_Button" to="." method="_on_Cancel_Button_button_down"]
+[connection signal="Tapped" from="EditWord_VBox/DeleteWord_Container/DeleteWord_Button" to="." method="_on_DeleteWord_Button_Tapped"]
+[connection signal="Tapped" from="EditWord_VBox/AddDefinition_Container/AddDefinition_Button" to="." method="_on_AddDefinition_Button_Tapped"]
+[connection signal="Tapped" from="EditWord_VBox/MarginContainer/HBoxContainer/Save_Container/Save_Button" to="." method="_on_Save_Button_Tapped"]
+[connection signal="Tapped" from="EditWord_VBox/MarginContainer/HBoxContainer/Cancel_Container/Cancel_Button" to="." method="_on_Cancel_Button_Tapped"]

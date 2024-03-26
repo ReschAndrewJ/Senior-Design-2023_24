@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://themes/Base_Theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Front_Page.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Touch_Button.cs" type="Script" id=3]
 
 [node name="FrontPage" type="Control"]
 anchor_right = 1.0
@@ -40,6 +41,7 @@ size_flags_vertical = 3
 margin_right = 166.0
 margin_bottom = 52.0
 text = "Add Word"
+script = ExtResource( 3 )
 
 [node name="ViewGroups_Container" type="MarginContainer" parent="VBoxContainer/MarginContainer/Top_Buttons"]
 margin_left = 186.0
@@ -52,6 +54,7 @@ size_flags_vertical = 3
 margin_right = 122.0
 margin_bottom = 52.0
 text = "Groups"
+script = ExtResource( 3 )
 
 [node name="SearchBar_Container" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 72.0
@@ -77,8 +80,10 @@ size_flags_horizontal = 4
 margin_right = 118.0
 margin_bottom = 52.0
 text = "Search"
+script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 anchor_top = 0.05
 anchor_right = 1.0
 anchor_bottom = 0.15
@@ -111,7 +116,7 @@ margin_left = 10.0
 margin_top = 41.0
 margin_right = 227.0
 margin_bottom = 87.0
-text = "Defintions:"
+text = "Definitions:"
 
 [node name="GroupCount_Container3" type="MarginContainer" parent="HBoxContainer"]
 margin_left = 482.0
@@ -126,8 +131,8 @@ margin_left = 10.0
 margin_top = 41.0
 margin_right = 228.0
 margin_bottom = 87.0
-text = "Groups: N/A"
+text = "Groups:"
 
-[connection signal="button_down" from="VBoxContainer/MarginContainer/Top_Buttons/AddWord_Container/AddWord_Button" to="." method="_on_AddWord_Button_button_down"]
-[connection signal="button_down" from="VBoxContainer/MarginContainer/Top_Buttons/ViewGroups_Container/ViewGroups_Button" to="." method="_on_ViewGroups_Button_button_down"]
-[connection signal="button_down" from="VBoxContainer/ConfirmSearch_Container/ConfirmSearch_Button" to="." method="_on_ConfirmSearch_Button_button_down"]
+[connection signal="Tapped" from="VBoxContainer/MarginContainer/Top_Buttons/AddWord_Container/AddWord_Button" to="." method="_on_AddWord_Button_Tapped"]
+[connection signal="Tapped" from="VBoxContainer/MarginContainer/Top_Buttons/ViewGroups_Container/ViewGroups_Button" to="." method="_on_ViewGroups_Button_Tapped"]
+[connection signal="Tapped" from="VBoxContainer/ConfirmSearch_Container/ConfirmSearch_Button" to="." method="_on_ConfirmSearch_Button_Tapped"]
