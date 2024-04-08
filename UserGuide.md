@@ -13,6 +13,7 @@
 
 [Editing Words & Groups](#Editing_Words_&_Groups)
 
+[FAQ](#FAQ)
 
 <a id="Installation"></a>
 ## Installation 
@@ -25,6 +26,7 @@ A virtual keyboard can be enabled through Settings -> System -> Languages & inpu
 3. When given a warning press continue
 4. Press Install
 
+TODO: Add Images
 
 <a id="Adding_Words"></a >
 ## Adding Words
@@ -36,12 +38,22 @@ Next is a series of text blocks to fill in the word's definitions. More definiti
 Last is a scroll-list of the groups that have been saved to the app (see [Adding Groups](#Adding_Groups)). The word being part of any group can be toggled on or off by tapping the corresponding entry in the list.
 With all of the fields filled you save your word by pressing the "Save" button, or you can go back to the main page at any time by either pressing the "Cancel" button or using your phone's back action.
 
+<p float="left"> 
+  <img src="/img/mainPage.png" width=30% />
+  <img src="/img/wordCreate.png" width=30% />
+</p>
+
 <a id="Adding_Groups"></a >
 ## Adding Groups
 
 Groups can be added from the groups list page, accessible by pressing the "Groups" button on the main app page.
 Adding a group only requires a name to be used as the group's label. Like when adding words, the group can saved by pressing "Save", or you can return to the groups list page by pressing either the "Cancel" button or using your phone's back action.
 Words can be added to the group when they are either initially added (see [Adding Words](#Adding_Words)) or edited (see [Editing Words & Groups](#Editing_Words_&_Groups)).
+
+<p float="left">
+  <img src="/img/groups.png" width=30% /> 
+  <img src="/img/groupCreate.png" width=30% />
+</p>
 
 <a id="Searching_For_Words"></a >
 ## Searching For Words
@@ -50,6 +62,11 @@ A word can be searched for using either the search bar on the main app page and 
 The app will look for the searched item by the Kanji form, Hiragana/Katakana form, and the word definitions.
 A word returned by the search can be tapped on to open that word's details page.
 
+<p float="left">
+  <img src="/img/mainPage.png" width=30% />
+  <img src="/img/search.png" width=30% />
+</p>
+
 <a id="Viewing_Groups"></a >
 ## Viewing Groups
 
@@ -57,12 +74,32 @@ Pressing the "Groups" button from the main app page brings you to the groups lis
 This page contains a preview of every group saved to the app, and each preview contains previews of several words from the group shown in no particular order. Tapping on a group opens a list of all words that are in that group.
 Any word in the group can be tapped on to open that word's details page.
 
+<p float="left">
+  <img src="/img/groups.png" width=30% />
+  <img src="/img/groupWords.png" width=30% />
+</p>
+
 <a id="Editing_Words_&_Groups"></a >
 ## Editing Words & Groups
 
 To edit a word, you need to go to that word's details page. From there press the "Edit Word" button, and the page used to create a word opens with the details filled. Pressing the "Save" button on this page will update any modified information. Also, the "Delete Word" button is available to completely remove the word from the app.
 
+<p float="left">
+  <img src="/img/wordDetail.png" width=30% /> 
+  <img src="/img/wordEdit.png" width=30% />
+  <img src="/img/wordDelete.png" width=30% />
+</p>
+
 To edit a group, you need to go to the page for that group. Pressing the "Edit Group" button allows you to either change the name of the group or remove the group entirely from the app. 
 Deleting a group will not remove the words assigned to it.
 
+<p float="left">
+  <img src="/img/groupWords.png" width=30% /> 
+  <img src="/img/groupEdit.png" width=30% />
+  <img src="/img/groupDelete.png" width=30% />
+</p>
 
+<a id="FAQ"></a >
+## FAQ
+
+- TODO
