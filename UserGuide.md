@@ -26,7 +26,11 @@ A virtual keyboard can be enabled through Settings -> System -> Languages & inpu
 3. When given a warning press continue
 4. Press Install
 
-TODO: Add Images
+<p float="left"> 
+  <img src="/img/installWarning.png" width=30% />
+  <img src="/img/installConfirm.png" width=30% />
+  <img src="/img/installComplete.png" width=30% />
+</p>
 
 <a id="Adding_Words"></a >
 ## Adding Words
