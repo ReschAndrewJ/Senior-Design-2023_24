@@ -106,4 +106,20 @@ Deleting a group will not remove the words assigned to it.
 <a id="FAQ"></a >
 ## FAQ
 
-- TODO
+- Is the app only for Android? Can I install it on an IPhone?
+  - The app is for Android only. It may be possible to use an emulator to run it on an IPhone.
+
+- Can I share my dictionary and groups with others?
+  - The app does not currently support sharing, but will likely gain that feature if I development continues.
+
+- Do I already need to be able to read Japanese to be able to use the app?
+  - You should be able to read at least hiragana to get substantial use out of the app. I have no intention of adding a romaji word form input, but you can use romaji instead of hiragana/katakana if you really want to.
+
+- Could the app be used for languages other than Japanese?
+  - The app could be modified for other languages, however it is speciallized for Japanese. For example, having multiple written forms of words is generally specific to Japanese, and the search system is made to work with Japanese conjugation. If development continues, the app would be made to be more speciallized towards Japanese, rather than more general.
+
+- How big is the app?
+  - Approximately 95 MB
+
+- Why is the app so large?
+  - The application was built in "Debug Mode" and is not fully optimized. Additionally, the app is built using a game engine, meaning there are a large number of unused features provided by the engine that may introduce file bloat. 
