@@ -15,9 +15,9 @@ An Android application that is a Japanese dictionary where the user provides the
 
 ### Project Abstract
 
-Many make the attempt to learn an additional language. And while not everyone succeeds, having effective learning tools can make the process much easier. This project is to make one such tool, with the app being tuned for studying the Japanese language. 
+The project is:
 
-The application will be developed for Android devices and will make use of a database for the user to save and retrieve words and their definitions. The user will be able to search for words they have saved using either the word or the definition.
+An application for Android that is a Japanese language dictionary where the user provides the words that they want to store. Words can be searched for by spelling or definition, and words can be assigned into groups which can be used as study lists. When a user learns additional definitions of a word, they can edit the entry for that word to also have the new definition.
 
 ### Inadequacy of Current Solutions
 
